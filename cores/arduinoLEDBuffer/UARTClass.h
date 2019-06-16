@@ -62,6 +62,9 @@ class UARTClass : public HardwareSerial
 
     operator bool() { return true; }; // UART always active
 
+    volatile unsigned char* getBufferBase() { return _rx_buffer->_aucBuffer; }
+    void clearRead() { _rx_buffer->_iHead = _rx_buffer->_iTail = 0; }
+
   protected:
     void init(const uint32_t dwBaudRate, const uint32_t config);
 

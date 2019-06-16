@@ -13,7 +13,7 @@
 
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA	 02110-1301	 USA
 */
 
 #ifndef __USBAPI__
@@ -46,8 +46,6 @@ extern USBDevice_ USBDevice;
 
 class Serial_ : public Stream
 {
-private:
-	RingBuffer *_cdc_rx_buffer;
 public:
 	void begin(uint32_t baud_count);
 	void begin(uint32_t baud_count, uint8_t config);
@@ -64,6 +62,9 @@ public:
 	using Print::write; // pull in write(str) from Print
 	operator bool();
 
+	unsigned char* getBufferBase();
+	void clearRead();
+	
 	// This method allows processing "SEND_BREAK" requests sent by
 	// the USB host. Those requests indicate that the host wants to
 	// send a BREAK signal and are accompanied by a single uint16_t

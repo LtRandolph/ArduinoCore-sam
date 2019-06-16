@@ -21,7 +21,7 @@
 
 #ifdef CDC_ENABLED
 
-#define CDC_SERIAL_BUFFER_SIZE	512
+#define CDC_SERIAL_BUFFER_SIZE	(LED_COUNT * 3 + 1)
 
 /* For information purpose only since RTS is not always handled by the terminal application */
 #define CDC_LINESTATE_DTR		0x01 // Data Terminal Ready
@@ -313,6 +313,18 @@ Serial_::operator bool()
 
 	delay(10);
 	return result;
+}
+
+unsigned char* Serial_::getBufferBase()
+{
+	ring_buffer *buffer = &cdc_rx_buffer;
+	return buffer->buffer;
+}
+
+void Serial_::clearRead()
+{
+	ring_buffer *buffer = &cdc_rx_buffer;
+	buffer->head = buffer->tail = 0;
 }
 
 int32_t Serial_::readBreak() {

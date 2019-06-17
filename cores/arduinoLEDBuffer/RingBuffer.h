@@ -25,8 +25,8 @@
 // using a ring buffer, in which head is the index of the location
 // to which to write the next incoming character and tail is the index of the
 // location from which to read.
-#define LED_COUNT 900
-#define SERIAL_BUFFER_SIZE_LED (LED_COUNT * 3 + 1)
+#define MAX_LEDS 900
+#define SERIAL_BUFFER_SIZE_LED (MAX_LEDS * 3 + 1)
 #define SERIAL_BUFFER_SIZE_DEFAULT 128
 
 class RingBuffer

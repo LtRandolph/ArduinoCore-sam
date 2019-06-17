@@ -21,7 +21,7 @@
 
 #ifdef CDC_ENABLED
 
-#define CDC_SERIAL_BUFFER_SIZE	(LED_COUNT * 3 + 1)
+#define CDC_SERIAL_BUFFER_SIZE	(MAX_LEDS * 3 + 1)
 
 /* For information purpose only since RTS is not always handled by the terminal application */
 #define CDC_LINESTATE_DTR		0x01 // Data Terminal Ready
